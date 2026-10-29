@@ -1,1 +1,1 @@
-export const DB_NAME = "socialscreen";
+export const DB_NAME = "rapidrescue";
