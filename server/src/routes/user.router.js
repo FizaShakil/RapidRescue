@@ -8,17 +8,20 @@ import {
     getCurrentUser,
     updateAccountDetails,
 } from "../controllers/user.controller.js";
+
 import {
     createBooking,
     getMyBookings,
     getMyBookingById,
     cancelMyBooking,
 } from "../controllers/booking.controller.js";
+
 import {
     createMedicalProfile,
     getMyMedicalProfile,
     updateMyMedicalProfile,
 } from "../controllers/medicalProfile.controller.js";
+
 import {
     submitFeedback,
     getMyFeedback,
@@ -27,12 +30,12 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const userRouter = Router();
 
-// ── Public routes ─────────────────────────────────────────────────────────────
+// ── Public routes 
 userRouter.post("/register", registerUser);
 userRouter.post("/login", loginUser);
 userRouter.post("/refresh-token", accessRefreshToken);
 
-// ── Authenticated routes ──────────────────────────────────────────────────────
+// ── Authenticated routes 
 userRouter.use(verifyJWT);
 
 userRouter.post("/logout", logoutUser);

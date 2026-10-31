@@ -11,14 +11,17 @@ import feedbackRouter from "./routes/feedback.router.js";
 
 const app = express();
 
-// ── Core middleware ───────────────────────────────────────────────────────────
-app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
+// Core middleware 
+app.use(cors({ 
+    origin: process.env.CORS_ORIGIN, 
+    credentials: true 
+}));
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-// ── Routes ────────────────────────────────────────────────────────────────────
+// Routes
 // Mount order matters — more specific prefixes before wildcards
 
 // Public + user-authenticated routes
@@ -47,6 +50,7 @@ app.use((req, res) => {
 // Receives errors thrown via ApiError or passed to next(err) by asyncHandler.
 // Stack traces are suppressed in production to avoid leaking implementation details.
 // 4-parameter signature is required by Express to recognise this as an error handler.
+
 // _req and _next are unused but must be present.
 app.use((err, _req, res, _next) => {
     const statusCode = err.statusCode || 500;
